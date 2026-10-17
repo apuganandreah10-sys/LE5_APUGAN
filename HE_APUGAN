@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+int main() {
+    int choice;
+    float balance = 500.00;
+    float amount;
+
+    do {
+        printf("\n============================\n");
+        printf("       WELCOME TO BSIT BANK\n");
+        printf("============================\n");
+        printf("1. Check Balance\n");
+        printf("2. Deposit Money\n");
+        printf("3. Withdraw Money\n");
+        printf("4. Exit\n");
+        printf("----------------------------\n");
+        printf("Choose a transaction: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            printf("\n--- ACCOUNT BALANCE ---\n");
+            printf("Available balance: P%.2f\n", balance);
+        }
+
+        else if (choice == 2) {
+            printf("\nEnter deposit amount: P");
+            scanf("%f", &amount);
+
+            if (amount > 0) {
+                balance += amount;
+
+                printf("\nDeposit Successful!\n");
+                printf("Amount deposited: P%.2f\n", amount);
+                printf("New balance: P%.2f\n", balance);
+            } else {
+                printf("\nInvalid amount. Try again.\n");
+            }
+        }
+
+        else if (choice == 3) {
+            printf("\nEnter withdrawal amount: P");
+            scanf("%f", &amount);
+
+            if (amount <= 0) {
+                printf("\nInvalid amount. Try again.\n");
+            }
+            else if (balance - amount < 100.00) {
+                printf("\nTRANSACTION DENIED!\n");
+                printf("You must maintain at least "
+                       "P100.00 in your account.\n");
+                printf("Current balance: P%.2f\n", balance);
+            }
+            else {
+                balance -= amount;
+
+                printf("\nWithdrawal Successful!\n");
+                printf("Amount withdrawn: P%.2f\n", amount);
+                printf("Remaining balance: P%.2f\n", balance);
+            }
+        }
+
+        else if (choice == 4) {
+            printf("\n============================\n");
+            printf("Thank you for banking with us!\n");
+            printf("Your final balance: P%.2f\n", balance);
+            printf("       HAVE A NICE DAY!\n");
+            printf("============================\n");
+        }
+
+        else {
+            printf("\nInvalid selection!\n");
+            printf("Please choose from 1 to 4.\n");
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
